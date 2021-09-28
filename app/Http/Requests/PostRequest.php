@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 class PostRequest extends FormRequest
@@ -15,8 +16,9 @@ class PostRequest extends FormRequest
     public function authorize()
     {
         if($this->isMethod('put')){
-//            return auth()->check() && auth()->id() ===
+            return auth()->check() && Gate::allows('edit-post', $this->route()->parameter('post'));
         }
+
         return auth()->check();
     }
 

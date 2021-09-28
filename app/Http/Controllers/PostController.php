@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -71,6 +72,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (! Gate::allows('edit-post', $post)) {
+            return redirect()->route('posts.index')->withErrors(['message' => 'You don\'t have permission to access this resource']);
+        }
         return view('posts.create', compact('post'));
     }
 
