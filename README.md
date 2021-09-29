@@ -11,6 +11,7 @@ Just clone the repository and run the following comment, and you should be good 
 ```angular2html
 cd product directory
 cp .env.example .env
+touch database/database.sqlite
 composer install --no-dev
 php artisan key:generate
 npm install && npm run dev
