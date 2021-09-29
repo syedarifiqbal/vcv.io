@@ -11,12 +11,12 @@ Just clone the repository and run the following comment, and you should be good 
 ```angular2html
 cd product directory
 cp .env.example .env
-composer install --ignore-dev
+composer install --no-dev
 php artisan key:generate
 npm install && npm run dev
 php artisan migrate --seed
 or php artisan migrate:refresh --seed
-php artisan serve --port-9000
+php artisan serve --port=9000
 ```
 
 Visit http://localhost:9000
